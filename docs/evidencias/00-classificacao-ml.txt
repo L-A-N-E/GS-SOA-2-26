@@ -1,5 +1,5 @@
-### Classificacao das paradas vinda da disciplina de Machine Learning
-### (migracao V3 + carga V4: resultado do agrupamento KMeans)
+### Classificacao das paradas por prioridade de instalacao do totem
+### (migracao V3 + carga V4)
 
          prioridade_totem         |            grupo_ml            | count 
 ----------------------------------+--------------------------------+-------

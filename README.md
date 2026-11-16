@@ -163,7 +163,7 @@ PontoDeInteresse (ligado às paradas por proximidade geográfica)
 
 ### Uma decisão que vale explicar
 
-`PrevisaoChegada` guarda a **origem** do dado: telemetria em tempo real, quadro de horários publicado ou estimativa do modelo de Machine Learning. O cidadão tem o direito de saber se está vendo onde o ônibus está ou onde ele deveria estar — e o totem anuncia isso em voz alta quando a informação é uma estimativa.
+`PrevisaoChegada` guarda a **origem** do dado: telemetria em tempo real, quadro de horários publicado ou estimativa de um modelo preditivo. O cidadão tem o direito de saber se está vendo onde o ônibus está ou onde ele deveria estar — e o totem anuncia isso em voz alta quando a informação é uma estimativa.
 
 Mais do que isso: quando a previsão vem do modelo, ela carrega uma **faixa** em vez de um número. O modelo erra cerca de 7,6 minutos, então anunciar "24 minutos" prometeria uma precisão que ele não tem. A faixa é calibrada por predição conformal para cobrir 80% dos casos, e a cobertura medida foi de 79,8%. O botão tátil passa a dizer *"deve chegar entre 13 e 37 minutos"*. Previsões de telemetria continuam pontuais, porque são exatas por natureza.
 
@@ -183,13 +183,13 @@ As consultas de proximidade (`/api/paradas/proximas`) primeiro filtram por uma *
 src/main/resources/db/migration/
 ├── V1__criar_schema_inicial.sql              9 tabelas, chaves e constraints de domínio
 ├── V2__criar_indices.sql                     índices, cada um justificado por uma consulta real
-├── V3__adicionar_classificacao_ml_na_parada.sql   evolução do schema: resultado do KMeans
+├── V3__adicionar_classificacao_ml_na_parada.sql   classificação das paradas por oferta e espera
 ├── V4__carregar_dados_sptrans.sql            carga de dados reais da SPTrans
 ├── V5__ajustar_piloto_dos_totens.sql         correção do piloto, feita ao exercitar a API
-└── V6__adicionar_faixa_de_espera.sql         faixa de espera vinda do modelo de ML
+└── V6__adicionar_faixa_de_espera.sql         faixa de 80% nas previsões   
 ```
 
-`V3` é a evolução que mostra a solução funcionando junto: a disciplina de Machine Learning agrupou as 21.933 paradas de São Paulo por oferta e espera e produziu uma fila de instalação dos totens. Essa classificação entra no domínio como as colunas `grupo_ml` e `prioridade_totem` da parada.
+`V3` incorpora ao domínio o resultado de uma análise prévia das 21.933 paradas de São Paulo, que as agrupou por oferta e espera e produziu uma fila de instalação dos totens. A classificação entra como as colunas `grupo_ml` e `prioridade_totem` da parada, e é a partir dela que a API responde quais paradas são prioritárias.
 
 `V4` carrega **dados reais**: 12 linhas, 276 paradas e seus itinerários, extraídos do GTFS oficial da SPTrans (https://www.sptrans.com.br/desenvolvedores/), válido de 01/10/2023 a 01/06/2027. Os cadastros de cidadãos ao final são **fictícios** — conforme os combinados da GS, nenhum dado pessoal real é utilizado.
 
@@ -278,16 +278,6 @@ Os testes rodam sobre **H2 em memória**, para que a suíte execute em qualquer 
 | [`swagger-ui.png`](docs/evidencias/swagger-ui.png) | A documentação OpenAPI 3.1 gerada pelo springdoc a partir do código, com as seis áreas da API |
 
 A lista completa e o passo a passo para gerar tudo de novo estão em [`docs/EVIDENCIAS.md`](docs/EVIDENCIAS.md).
-
-## Conexão com as outras disciplinas
-
-| Disciplina | Como se encaixa |
-| :--- | :--- |
-| **IA & Machine Learning** | O agrupamento KMeans alimenta `grupo_ml` e `prioridade_totem` (migração V3); o modelo de espera publica previsões com origem `MODELO_ML` e a faixa de 80% (migração V6) |
-| **Mobile Development & IoT** | O aplicativo consome esta API: busca por proximidade, leitura do QR Code e card Rota de Hoje |
-| **Physical Computing** | O circuito ESP32 do totem chama `POST /api/totens/{codigo}/sincronizar` e consome `GET /api/totens/{codigo}/painel` |
-| **Operating Systems** | A infraestrutura Linux provisiona e hospeda esta aplicação web |
-| **Testing & QA** | As features e casos de teste no Azure Boards cobrem as jornadas expostas por estes endpoints |
 
 ## Uso de IA
 

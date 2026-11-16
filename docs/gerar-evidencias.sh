@@ -35,7 +35,7 @@ echo
 # Previsoes expiram em 5 minutos por regra de negocio, entao antes de
 # capturar o painel registramos previsoes novas pela propria API. Em
 # producao quem faz isso e a integracao com a API Olho Vivo e o servico
-# que aplica o modelo de Machine Learning.
+# que aplica o modelo de previsao.
 # ---------------------------------------------------------------------
 semear() {
     curl -s -o /dev/null -X POST "$BASE/api/previsoes" \
@@ -125,8 +125,8 @@ if docker exec "$PSQL_CONTAINER" true >/dev/null 2>&1; then
     printf '%-42s -> %s\n' "psql volume carregado" "00-dados-carregados.txt"
 
     {
-        echo "### Classificacao das paradas vinda da disciplina de Machine Learning"
-        echo "### (migracao V3 + carga V4: resultado do agrupamento KMeans)"
+        echo "### Classificacao das paradas por prioridade de instalacao do totem"
+        echo "### (migracao V3 + carga V4)"
         echo
         consulta "SELECT prioridade_totem, grupo_ml, COUNT(*) FROM tb_parada GROUP BY prioridade_totem, grupo_ml ORDER BY 1;"
         echo

@@ -22,7 +22,7 @@ Transformar a proposta do produto em um modelo de domínio implementável, cobri
 
 A equipe escolheu a stack entre três alternativas apresentadas: **Java 21 com Spring Boot e PostgreSQL em Docker**, em vez de Spring Boot com Oracle da FIAP ou Python com FastAPI. O critério foi não depender de credenciais e de VPN no momento da correção, e manter coerência com o que o roteiro do pitch já afirmava sobre o backend.
 
-A equipe também definiu que o repositório seria `GS-SOA-2-26`, separado do repositório de Machine Learning, para que cada disciplina tenha um repositório com apenas o que lhe diz respeito.
+A equipe também definiu que o repositório seria `GS-SOA-2-26`, contendo apenas o backend da aplicação.
 
 ### Como a resposta foi verificada na prática
 
@@ -120,7 +120,7 @@ Após a correção, o painel do totem (`docs/evidencias/03-painel-totem.txt`) pa
 
 ---
 
-## 6. Faixa de espera vinda do modelo de Machine Learning
+## 6. Faixa de espera nas previsões
 
 ### Prompt utilizado
 

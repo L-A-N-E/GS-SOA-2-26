@@ -40,7 +40,7 @@ O script faz as duas capturas em uma passada: um arquivo por chamada da API, cad
 | :--- | :--- |
 | `00-migracoes-flyway.txt` | As seis migrações aplicadas, consultadas direto no PostgreSQL |
 | `00-dados-carregados.txt` | O volume real carregado da SPTrans — 12 linhas, 276 paradas, 282 itinerários — e as 12 linhas, uma a uma |
-| `00-classificacao-ml.txt` | A classificação do KMeans dentro do banco, ligando as duas disciplinas |
+| `00-classificacao-ml.txt` | A classificação das paradas dentro do banco, por prioridade e grupo |
 | `00-testes.txt` | A suíte: 60 testes, 0 falhas, detalhados por classe |
 | `01-saude.txt` | Aplicação no ar e conectada ao PostgreSQL |
 | `02-migracoes.txt` | As seis migrações do Flyway aplicadas, com checksum e data |
@@ -85,7 +85,7 @@ docker exec -it sbp-postgres psql -U sbp -d sbp -c "SELECT (SELECT COUNT(*) FROM
 docker exec -it sbp-postgres psql -U sbp -d sbp -c "SELECT installed_rank, version, description, success FROM flyway_schema_history ORDER BY installed_rank;"
 ```
 
-### As paradas prioritárias segundo a análise de Machine Learning
+### As paradas prioritárias para a instalação dos totens
 
 ```bash
 docker exec -it sbp-postgres psql -U sbp -d sbp -c "SELECT prioridade_totem, COUNT(*) FROM tb_parada GROUP BY prioridade_totem ORDER BY 1;"
