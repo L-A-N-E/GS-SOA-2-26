@@ -1,0 +1,14 @@
+### Suite de testes automatizados
+### Gerado por: ./mvnw test
+
+  SbpApiApplicationTests             Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+  domain.DominioTest$LinhaTest       Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
+  domain.DominioTest$ParadaTest      Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
+  domain.DominioTest$PrevisaoTest    Tests run: 13, Failures: 0, Errors: 0, Skipped: 0
+  domain.DominioTest$TotemTest       Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
+  service.ParadaServiceTest          Tests run: 8, Failures: 0, Errors: 0, Skipped: 0
+  service.PrevisaoServiceTest        Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
+  service.TotemServiceTest           Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
+  web.ParadaControllerTest           Tests run: 8, Failures: 0, Errors: 0, Skipped: 0
+
+  TOTAL: 60 testes, 0 falhas, 0 erros, 0 pulados

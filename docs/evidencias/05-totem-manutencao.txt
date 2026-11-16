@@ -1,0 +1,5 @@
+### GET /api/totens/SBP-0004/painel
+
+{"momento":"2026-11-16T18:42:55.424335551","status":409,"erro":"Conflito com uma regra de negócio","mensagem":"O totem SBP-0004 não está em operação. Situação atual: Fora do ar para manutenção.","caminho":"/api/totens/SBP-0004/painel"}
+
+--- HTTP 409 em 0.014201s ---

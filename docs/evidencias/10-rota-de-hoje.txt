@@ -1,0 +1,5 @@
+### GET /api/cidadaos/1/rota-de-hoje
+
+[{"id":1,"cidadaoId":1,"codigoLinha":"1012-10","nomeLinha":"Term. Jd. Britania - Jd. Monte Belo","paradaEmbarque":"Terminal Jardim Britânia","paradaDesembarque":"Estr. Cel. José Gladiador, 262","horarioHabitual":"07:30:00","dias":["TERCA","QUINTA","SEGUNDA","QUARTA","SEXTA"],"alertaDesembarque":true,"ativa":true,"ativaAgora":false}]
+
+--- HTTP 200 em 0.024837s ---

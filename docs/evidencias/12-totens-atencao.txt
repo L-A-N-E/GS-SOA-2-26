@@ -1,0 +1,5 @@
+### GET /api/totens/atencao
+
+[]
+
+--- HTTP 200 em 0.012818s ---

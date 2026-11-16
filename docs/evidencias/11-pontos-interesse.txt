@@ -1,0 +1,5 @@
+### GET /api/pontos-interesse/parada/115?raioKm=2&limite=5
+
+[{"id":12,"nome":"Estação da Luz da CPTM","categoria":"ESTACAO_TREM","descricaoCategoria":"Estação de trem (CPTM)","latitude":-23.53611,"longitude":-46.63556,"endereco":"Pça. da Luz, 1","distanciaKm":0.222},{"id":20,"nome":"Theatro Municipal de São Paulo","categoria":"TEATRO","descricaoCategoria":"Teatro ou equipamento cultural","latitude":-23.54528,"longitude":-46.63861,"endereco":"Pça. Ramos de Azevedo, s/n","distanciaKm":1.114},{"id":14,"nome":"Terminal Parque Dom Pedro II","categoria":"TERMINAL_ONIBUS","descricaoCategoria":"Terminal de ônibus","latitude":-23.54528,"longitude":-46.62778,"endereco":"Pq. Dom Pedro II, s/n","distanciaKm":1.136},{"id":23,"nome":"Poupatempo Sé","categoria":"ORGAO_PUBLICO","descricaoCategoria":"Órgão público ou serviço ao cidadão","latitude":-23.54972,"longitude":-46.63417,"endereco":"Pça. do Carmo, s/n","distanciaKm":1.476},{"id":8,"nome":"Estação Sé do Metrô","categoria":"ESTACAO_METRO","descricaoCategoria":"Estação de metrô","latitude":-23.55028,"longitude":-46.63389,"endereco":"Pça. da Sé, s/n","distanciaKm":1.537}]
+
+--- HTTP 200 em 0.013018s ---

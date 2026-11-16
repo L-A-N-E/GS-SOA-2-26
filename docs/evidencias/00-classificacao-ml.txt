@@ -1,0 +1,27 @@
+### Classificacao das paradas vinda da disciplina de Machine Learning
+### (migracao V3 + carga V4: resultado do agrupamento KMeans)
+
+         prioridade_totem         |            grupo_ml            | count 
+----------------------------------+--------------------------------+-------
+ 1 — equidade (PRIORIDADE MÁXIMA) | Parada isolada de longa espera |    19
+ 2 — alcance                      | Hub de integração              |   125
+ 3 — expansão                     | Corredor de bairro             |    90
+ 4 — já bem servida               | Parada integrada ao metrô      |    42
+(4 rows)
+
+
+### As paradas de prioridade maxima que ainda nao tem totem
+ codigo_gtfs |             nome              |            grupo_ml            
+-------------+-------------------------------+--------------------------------
+ 530009976   | Av. República Do Líbano, 2157 | Parada isolada de longa espera
+ 50004446    | Av. Águia De Haia, 123        | Parada isolada de longa espera
+ 920015222   | Morcote B/C                   | Parada isolada de longa espera
+ 7404540     | R. Altamisa, 205              | Parada isolada de longa espera
+ 780006317   | R. Benjamin Carr, 87          | Parada isolada de longa espera
+ 920015212   | R. Botucatu, 696              | Parada isolada de longa espera
+ 530015445   | R. Dos Açores, 305            | Parada isolada de longa espera
+ 9206551     | R. Dr. Bacelar, 353           | Parada isolada de longa espera
+ 9206521     | R. Dr. Bacelar, 486           | Parada isolada de longa espera
+ 780006311   | R. Esteban Araciel, 87        | Parada isolada de longa espera
+(10 rows)
+

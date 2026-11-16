@@ -1,0 +1,69 @@
+spring:
+  application:
+    name: sbp-api
+
+  datasource:
+    url: ${SBP_DB_URL:jdbc:postgresql://localhost:5432/sbp}
+    username: ${SBP_DB_USER:sbp}
+    password: ${SBP_DB_PASSWORD:sbp}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: sbp-pool
+      maximum-pool-size: 10
+      connection-timeout: 20000
+
+  jpa:
+    # O Flyway e o dono do schema. O Hibernate apenas CONFERE se o mapeamento das
+    # entidades bate com o que as migracoes criaram: se divergir, a aplicacao nao sobe.
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: America/Sao_Paulo
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: true
+
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: ${SBP_PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha
+    doc-expansion: none
+  api-docs:
+    path: /v3/api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,flyway
+  endpoint:
+    health:
+      show-details: always
+
+# Configuracoes proprias do S.B.P.
+sbp:
+  qrcode:
+    # Endereco que o QR Code impresso no totem abre no celular do cidadao
+    base-url: ${SBP_QRCODE_BASE_URL:https://sbp.mobi/p/}
+
+logging:
+  level:
+    br.com.fiap.sbp: INFO
+    org.flywaydb: INFO

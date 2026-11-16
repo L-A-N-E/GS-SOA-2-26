@@ -1,0 +1,5 @@
+### GET /api/paradas/999999
+
+{"momento":"2026-11-16T18:42:55.997873987","status":404,"erro":"Recurso não encontrado","mensagem":"Parada não encontrado(a) para o identificador: 999999","caminho":"/api/paradas/999999"}
+
+--- HTTP 404 em 0.025775s ---

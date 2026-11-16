@@ -1,0 +1,5 @@
+### GET /api/paradas/proximas?latitude=-23.55&longitude=-46.63&raioKm=50
+
+{"momento":"2026-11-16T18:42:56.060849094","status":409,"erro":"Conflito com uma regra de negócio","mensagem":"O raio de busca deve estar entre 0 e 5.0 km.","caminho":"/api/paradas/proximas"}
+
+--- HTTP 409 em 0.007245s ---

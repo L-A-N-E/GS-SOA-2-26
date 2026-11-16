@@ -1,0 +1,25 @@
+# Perfil usado pelos testes automatizados.
+#
+# Os testes rodam sobre H2 em memoria, em modo de compatibilidade com PostgreSQL,
+# para que a suite execute em qualquer maquina sem depender do Docker. O schema
+# e criado a partir das proprias entidades (ddl-auto=create-drop), e o Flyway
+# fica desligado: as migracoes sao escritas para PostgreSQL e sao validadas
+# contra o banco real, conforme descrito no README.
+spring:
+  datasource:
+    url: jdbc:h2:mem:sbp;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+
+  flyway:
+    enabled: false
+
+logging:
+  level:
+    org.hibernate.SQL: WARN

@@ -1,0 +1,25 @@
+### Carga de dados reais da SPTrans (migracoes V4 e V5)
+
+ linhas | paradas | itinerarios | totens | pontos_interesse | previsoes | cidadaos | rotinas 
+--------+---------+-------------+--------+------------------+-----------+----------+---------
+     12 |     276 |         282 |      4 |               23 |        12 |        3 |       3
+(1 row)
+
+
+### Amostra das linhas reais carregadas
+ codigo  |                    nome                    | area_operacao | extensao_km | duracao_programada_min 
+---------+--------------------------------------------+---------------+-------------+------------------------
+ 1012-10 | Term. Jd. Britania - Jd. Monte Belo        | NOROESTE      |        10.4 |                     55
+ 1015-10 | Term. Jd. Britânia - Chác. Maria Trindade  | NOROESTE      |       13.15 |                     46
+ 1018-10 | Vl. Rosa - Metrô Santana                   | NORTE         |        9.39 |                     56
+ 106A-10 | Metrô Santana - Itaim Bibi                 | NORTE         |        14.2 |                    109
+ 1177-10 | Term. A. E. Carvalho - Luz                 | NORDESTE      |       20.67 |                    115
+ 1177-31 | Term. A. E. Carvalho - Luz                 | NORDESTE      |       20.42 |                    102
+ 2002-10 | Term. Pq. D. Pedro Ii - Term. Bandeira     | LESTE         |         6.8 |                     76
+ 2100-10 | Term. Vl. Carrão - Pça. Da Sé              | LESTE         |       13.87 |                     88
+ 3021-10 | Pq. Bancário - Term. Vl Prudente           | SUDESTE       |        8.82 |                     46
+ 3024-10 | Vl. Industrial - Term. Vl Prudente         | SUDESTE       |        8.11 |                     46
+ 476L-10 | Metrô Vl. Mariana - Lar Esc. São Francisco | SUL           |        8.44 |                     62
+ 5015-10 | Jd. São Jorge - Metrô Jabaquara            | SUL           |        9.73 |                     61
+(12 rows)
+

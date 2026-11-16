@@ -1,0 +1,5 @@
+### GET /api/linhas?termo=1177
+
+{"content":[{"id":5,"codigo":"1177-10","nome":"Term. A. E. Carvalho - Luz","sentido":"TERMINAL_PRINCIPAL","areaOperacao":"NORDESTE","extensaoKm":20.67,"duracaoProgramadaMin":115,"acessivelCadeirante":true,"noturna":false,"velocidadeMediaKmh":10.784347826086957},{"id":6,"codigo":"1177-31","nome":"Term. A. E. Carvalho - Luz","sentido":"TERMINAL_PRINCIPAL","areaOperacao":"NORDESTE","extensaoKm":20.42,"duracaoProgramadaMin":102,"acessivelCadeirante":true,"noturna":false,"velocidadeMediaKmh":12.011764705882355}],"pageable":{"pageNumber":0,"pageSize":20,"sort":{"sorted":true,"unsorted":false,"empty":false},"offset":0,"paged":true,"unpaged":false},"totalElements":2,"totalPages":1,"last":true,"numberOfElements":2,"size":20,"number":0,"sort":{"sorted":true,"unsorted":false,"empty":false},"first":true,"empty":false}
+
+--- HTTP 200 em 0.024167s ---

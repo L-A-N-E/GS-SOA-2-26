@@ -1,0 +1,5 @@
+### POST /api/paradas  (corpo invalido de proposito)
+
+{"momento":"2026-11-16T18:42:56.132772491","status":400,"erro":"Requisição inválida","mensagem":"Um ou mais campos estão preenchidos de forma incorreta.","caminho":"/api/paradas","camposInvalidos":{"nome":"O nome da parada é obrigatório","longitude":"A longitude é obrigatória","latitude":"Latitude inválida","codigoGtfs":"O código GTFS da parada é obrigatório"}}
+
+--- HTTP 400 ---

@@ -1,0 +1,12 @@
+### Migracoes aplicadas pelo Flyway no PostgreSQL 16
+
+ installed_rank | version |             description              | type | success 
+----------------+---------+--------------------------------------+------+---------
+              1 | 1       | criar schema inicial                 | SQL  | t
+              2 | 2       | criar indices                        | SQL  | t
+              3 | 3       | adicionar classificacao ml na parada | SQL  | t
+              4 | 4       | carregar dados sptrans               | SQL  | t
+              5 | 5       | ajustar piloto dos totens            | SQL  | t
+              6 | 6       | adicionar faixa de espera            | SQL  | t
+(6 rows)
+
