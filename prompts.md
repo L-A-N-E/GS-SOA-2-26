@@ -22,7 +22,7 @@ Transformar a proposta do produto em um modelo de domínio implementável, cobri
 
 A equipe escolheu a stack entre três alternativas apresentadas: **Java 21 com Spring Boot e PostgreSQL em Docker**, em vez de Spring Boot com Oracle da FIAP ou Python com FastAPI. O critério foi não depender de credenciais e de VPN no momento da correção, e manter coerência com o que o roteiro do pitch já afirmava sobre o backend.
 
-A equipe também definiu que o repositório seria `GS-SOA-2-26`, separado do repositório de Machine Learning, para que cada professor abra um repositório contendo apenas o que avalia.
+A equipe também definiu que o repositório seria `GS-SOA-2-26`, separado do repositório de Machine Learning, para que cada disciplina tenha um repositório com apenas o que lhe diz respeito.
 
 ### Como a resposta foi verificada na prática
 
@@ -182,12 +182,3 @@ As referências urbanas e os 23 pontos de interesse escritos à mão nas migraç
 Parada Av. Prestes Maia, 940, Av. Prestes Maia, próximo à Estação da Luz.
 O ônibus da linha 1177-10 deve chegar entre 4 e 19 minutos. Este horário é uma estimativa.
 ```
-
----
-
-## O que a equipe precisa confirmar antes da entrega
-
-- [ ] Cada integrante consegue explicar o modelo de domínio e por que cada regra de negócio está na entidade a que pertence.
-- [ ] Cada integrante consegue explicar por que o Flyway é o dono do schema e o que `ddl-auto: validate` garante.
-- [ ] Cada integrante consegue percorrer o painel do totem e explicar por que ele é entregue em uma única chamada.
-- [ ] As evidências foram geradas de novo depois da última migração, com `bash docs/gerar-evidencias.sh` e o banco no ar — é o que mantém os arquivos `00-*` de acordo com as seis migrações.

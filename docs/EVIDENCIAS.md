@@ -59,25 +59,27 @@ O script faz as duas capturas em uma passada: um arquivo por chamada da API, cad
 | `15-erro-400-validacao.txt` | Validação de entrada, apontando cada campo inválido |
 | `16-openapi.json` | A especificação OpenAPI 3 completa, gerada a partir do código |
 
-## Prints a anexar
+## Capturas de tela
 
-Além das respostas capturadas pelo script, anexe nesta pasta:
+Cinco capturas complementam os arquivos gerados pelo script, mostrando a aplicação em funcionamento:
 
-- [ ] `swagger-ui.png` — a documentação em http://localhost:8080/swagger-ui.html, com as 6 seções de endpoints
-- [ ] `swagger-painel-totem.png` — o endpoint do painel do totem expandido, mostrando a descrição e o exemplo de resposta
-- [ ] `migracoes-aplicadas.png` — a saída do console do Flyway no start, ou a tabela `flyway_schema_history` no banco
-- [ ] `testes-verdes.png` — o resultado de `./mvnw test`
-- [ ] `banco-populado.png` — uma consulta no banco mostrando as linhas e paradas reais carregadas
+| Arquivo | O que mostra |
+| --- | --- |
+| `swagger-ui.png` | A documentação OpenAPI 3.1 servida em `/swagger-ui.html`, com as 6 áreas da API |
+| `swagger-painel-totem.png` | O endpoint do painel do totem expandido, com a descrição e o exemplo de resposta |
+| `migracoes-aplicadas.png` | As 6 migrações do Flyway em `/actuator/flyway`, com checksum, estado e data de aplicação |
+| `testes-verdes.png` | A saída de `./mvnw test`, com os 60 testes |
+| `banco-populado.png` | Uma consulta no banco com as linhas, paradas, itinerários e totens reais carregados |
 
-As três consultas abaixo são as mesmas que o script executa; estão aqui para quem quiser rodá-las à mão ou tirar o print.
+As três consultas abaixo são as mesmas que o script executa; estão aqui para quem quiser rodá-las à mão.
 
-### Consulta sugerida para o print do banco
+### Contagem dos dados carregados
 
 ```bash
 docker exec -it sbp-postgres psql -U sbp -d sbp -c "SELECT (SELECT COUNT(*) FROM tb_linha) AS linhas, (SELECT COUNT(*) FROM tb_parada) AS paradas, (SELECT COUNT(*) FROM tb_itinerario) AS itinerarios, (SELECT COUNT(*) FROM tb_totem) AS totens, (SELECT COUNT(*) FROM tb_ponto_interesse) AS pontos_interesse;"
 ```
 
-### Migrações aplicadas
+### Histórico do Flyway
 
 ```bash
 docker exec -it sbp-postgres psql -U sbp -d sbp -c "SELECT installed_rank, version, description, success FROM flyway_schema_history ORDER BY installed_rank;"
