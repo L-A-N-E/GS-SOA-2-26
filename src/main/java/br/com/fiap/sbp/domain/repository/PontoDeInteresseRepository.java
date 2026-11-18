@@ -18,7 +18,7 @@ public interface PontoDeInteresseRepository extends JpaRepository<PontoDeInteres
 
     Page<PontoDeInteresse> findByNomeContainingIgnoreCase(String nome, Pageable paginacao);
 
-    /** Pre-filtro por caixa de coordenadas, com a distancia exata calculada depois. */
+    /** Pré-filtro por caixa de coordenadas, com a distância exata calculada depois. */
     @Query("""
             SELECT poi FROM PontoDeInteresse poi
             WHERE poi.latitude BETWEEN :latMin AND :latMax

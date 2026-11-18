@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Ponto de parada de onibus.
+ * Ponto de parada de ônibus.
  *
- * <p>Corresponde a um stop do GTFS. Guarda tambem a referencia urbana (por
- * exemplo, em frente ao Hospital das Clinicas) porque o cidadao reconhece o
- * marco da rua antes de reconhecer o nome oficial da parada.</p>
+ * <p>Corresponde a um stop do GTFS. Guarda também a referência urbana (por
+ * exemplo, em frente ao Hospital das Clínicas), porque o cidadão reconhece o
+ * marco da rua antes do nome oficial da parada.</p>
  */
 @Entity
 @Table(name = "tb_parada", indexes = {
@@ -69,16 +69,16 @@ public class Parada {
     private boolean possuiCobertura = false;
 
     /**
-     * Grupo atribuido a parada pelo agrupamento KMeans da disciplina de Machine
-     * Learning, a partir da oferta de linhas e da espera observada no GTFS.
+     * Grupo atribuído à parada pelo agrupamento KMeans das paradas, a partir da
+     * oferta de linhas e da espera observada no GTFS.
      */
     @Size(max = 60)
     @Column(name = "grupo_ml", length = 60)
     private String grupoMl;
 
     /**
-     * Posicao da parada na fila de instalacao dos totens, derivada do mesmo
-     * agrupamento. E o que liga a analise de dados a decisao de onde instalar.
+     * Posição da parada na fila de instalação dos totens, derivada do mesmo
+     * agrupamento. É o que liga a análise de dados à decisão de onde instalar.
      */
     @Size(max = 40)
     @Column(name = "prioridade_totem", length = 40)
@@ -92,8 +92,8 @@ public class Parada {
     private Totem totem;
 
     /**
-     * Distancia em quilometros ate uma coordenada, pela formula de Haversine.
-     * Usada na busca do ponto mais proximo do cidadao, no aplicativo e no site.
+     * Distância em quilômetros até uma coordenada, pela fórmula de Haversine.
+     * Usada na busca do ponto mais próximo do cidadão, no aplicativo e no site.
      */
     public double distanciaKm(double outraLatitude, double outraLongitude) {
         double lat1 = Math.toRadians(this.latitude);
@@ -106,12 +106,12 @@ public class Parada {
         return 2 * RAIO_TERRA_KM * Math.asin(Math.sqrt(a));
     }
 
-    /** Indica se a parada ja conta com um totem do S.B.P. em operacao. */
+    /** Indica se a parada já conta com um totem do S.B.P. em operação. */
     public boolean possuiTotemAtivo() {
         return totem != null && totem.getStatus().operacional();
     }
 
-    /** Texto curto que o totem le em voz alta ao identificar a parada. */
+    /** Texto curto que o totem lê em voz alta ao identificar a parada. */
     public String descricaoAcessivel() {
         if (referenciaUrbana == null || referenciaUrbana.isBlank()) {
             return "Parada " + nome;

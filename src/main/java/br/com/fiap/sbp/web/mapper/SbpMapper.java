@@ -6,15 +6,15 @@ import br.com.fiap.sbp.web.dto.*;
 import java.time.LocalTime;
 
 /**
- * Conversao entre entidades do dominio e os objetos de transporte da API.
+ * Conversão entre entidades do domínio e os objetos de transporte da API.
  *
- * <p>Manter a conversao em um ponto unico evita que as entidades JPA vazem para
- * fora da aplicacao. Assim, uma mudanca no mapeamento do banco nao quebra o
+ * <p>Manter a conversão em um ponto único evita que as entidades JPA vazem para
+ * fora da aplicação. Assim, uma mudança no mapeamento do banco não quebra o
  * contrato consumido pelo aplicativo, pelo site e pelo totem.</p>
  */
 public final class SbpMapper {
 
-    /** Velocidade media de caminhada considerada no calculo a pe, em km/h. */
+    /** Velocidade média de caminhada considerada no cálculo a pé, em km/h. */
     private static final double VELOCIDADE_CAMINHADA_KMH = 5.0;
 
     private SbpMapper() {
@@ -127,7 +127,7 @@ public final class SbpMapper {
         );
     }
 
-    // --------------------------------------------------------------- Previsao
+    // -------------------------------------------------------------- Previsões
 
     public static PrevisaoResponse paraResposta(PrevisaoChegada previsao) {
         Linha linha = previsao.getLinha();
@@ -177,7 +177,7 @@ public final class SbpMapper {
                 .build();
     }
 
-    // ----------------------------------------------------------------- Cidadao
+    // ----------------------------------------------------------------- Cidadão
 
     public static CidadaoResponse paraResposta(Cidadao cidadao) {
         return new CidadaoResponse(
@@ -221,7 +221,7 @@ public final class SbpMapper {
         );
     }
 
-    // -------------------------------------------------------------- Itinerario
+    // -------------------------------------------------------------- Itinerário
 
     public static ItinerarioResponse paraResposta(Itinerario itinerario) {
         return new ItinerarioResponse(

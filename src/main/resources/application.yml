@@ -13,8 +13,8 @@ spring:
       connection-timeout: 20000
 
   jpa:
-    # O Flyway e o dono do schema. O Hibernate apenas CONFERE se o mapeamento das
-    # entidades bate com o que as migracoes criaram: se divergir, a aplicacao nao sobe.
+    # O Flyway é o dono do schema. O Hibernate apenas confere se o mapeamento das
+    # entidades corresponde ao que as migrações criaram: se divergir, a aplicação não sobe.
     hibernate:
       ddl-auto: validate
     open-in-view: false
@@ -57,10 +57,10 @@ management:
     health:
       show-details: always
 
-# Configuracoes proprias do S.B.P.
+# Configurações próprias do S.B.P.
 sbp:
   qrcode:
-    # Endereco que o QR Code impresso no totem abre no celular do cidadao
+    # Endereço que o QR Code impresso no totem abre no celular do cidadão
     base-url: ${SBP_QRCODE_BASE_URL:https://sbp.mobi/p/}
 
 logging:

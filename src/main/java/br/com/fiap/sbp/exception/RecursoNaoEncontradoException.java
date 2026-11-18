@@ -1,6 +1,6 @@
 package br.com.fiap.sbp.exception;
 
-/** Lancada quando o recurso pedido nao existe. Resulta em HTTP 404. */
+/** Lançada quando o recurso pedido não existe. Resulta em HTTP 404. */
 public class RecursoNaoEncontradoException extends RuntimeException {
 
     public RecursoNaoEncontradoException(String mensagem) {

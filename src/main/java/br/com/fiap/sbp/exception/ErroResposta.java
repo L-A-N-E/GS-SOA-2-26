@@ -10,7 +10,7 @@ import java.util.Map;
  * Corpo padronizado de erro da API.
  *
  * <p>Toda falha, de qualquer endpoint, responde neste mesmo formato, para que o
- * aplicativo, o site e o totem tratem erros de uma unica maneira.</p>
+ * aplicativo, o site e o totem tratem erros de uma única maneira.</p>
  */
 @Schema(description = "Resposta padronizada de erro da API do S.B.P.")
 public record ErroResposta(

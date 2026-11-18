@@ -32,9 +32,9 @@ import static org.mockito.Mockito.*;
 /**
  * Testa o endpoint central do S.B.P.: a montagem do painel do totem.
  *
- * <p>O que importa aqui e o que o cidadao ve na calcada — a ordem das previsoes,
- * o destaque do carrossel, o texto que o botao tatil le em voz alta — e a regra
- * que impede um totem fora de operacao de exibir informacao.</p>
+ * <p>O que importa aqui é o que o cidadão vê na calçada — a ordem das previsões,
+ * o destaque do carrossel, o texto que o botão tátil lê em voz alta — e a regra
+ * que impede um totem fora de operação de exibir informação.</p>
  */
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)

@@ -16,13 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Comparator;
 import java.util.List;
 
-/** Regras de negocio das referencias urbanas exibidas no mapa do totem. */
+/** Regras de negócio das referências urbanas exibidas no mapa do totem. */
 @Service
 public class PontoInteresseService {
 
     private static final double KM_POR_GRAU_LATITUDE = 111.0;
 
-    /** Raio considerado caminhavel a partir da parada. */
+    /** Raio considerado caminhável a partir da parada. */
     public static final double RAIO_PADRAO_KM = 1.0;
 
     private final PontoDeInteresseRepository pontoRepository;
@@ -56,9 +56,9 @@ public class PontoInteresseService {
     }
 
     /**
-     * Referencias urbanas proximas a uma parada, da mais perto para a mais longe.
-     * E o que o totem exibe no mapa para que o cidadao se localize por marcos da
-     * rua, e nao apenas pelo nome das paradas.
+     * Referências urbanas próximas a uma parada, da mais perto para a mais longe.
+     * É o que o totem exibe no mapa para que o cidadão se localize por marcos da
+     * rua, e não apenas pelo nome das paradas.
      */
     @Transactional(readOnly = true)
     public List<PontoInteresseResponse> buscarProximasDaParada(Long paradaId, double raioKm,

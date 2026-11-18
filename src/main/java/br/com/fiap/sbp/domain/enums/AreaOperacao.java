@@ -1,8 +1,8 @@
 package br.com.fiap.sbp.domain.enums;
 
 /**
- * As oito areas de operacao da rede municipal de Sao Paulo.
- * No GTFS da SPTrans cada area e identificada pela cor oficial da linha.
+ * As oito áreas de operação da rede municipal de São Paulo.
+ * No GTFS da SPTrans cada área é identificada pela cor oficial da linha.
  */
 public enum AreaOperacao {
 
@@ -25,7 +25,7 @@ public enum AreaOperacao {
         return corHex;
     }
 
-    /** Converte a cor publicada no GTFS na area de operacao correspondente. */
+    /** Converte a cor publicada no GTFS na área de operação correspondente. */
     public static AreaOperacao porCorGtfs(String corHex) {
         if (corHex == null) {
             return null;

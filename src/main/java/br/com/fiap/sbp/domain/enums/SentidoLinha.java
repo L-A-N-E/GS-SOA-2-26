@@ -1,6 +1,6 @@
 package br.com.fiap.sbp.domain.enums;
 
-/** Sentido de operacao de uma linha, conforme o campo {@code direction_id} do GTFS. */
+/** Sentido de operação de uma linha, conforme o campo {@code direction_id} do GTFS. */
 public enum SentidoLinha {
 
     TERMINAL_PRINCIPAL("Terminal principal -> bairro"),

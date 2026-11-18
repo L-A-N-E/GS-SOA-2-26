@@ -3,7 +3,7 @@
 **Global Solution 2026.2 — Desafio CitizenTech**
 FIAP · Engenharia de Software · 3º ano de Fev
 
-> Backend da CitizenTech S.B.P.: a API que entrega ao totem da calçada, ao aplicativo e ao site a mesma informação sobre o ônibus — inclusive para quem não tem celular, bateria ou dados móveis.
+> Backend da CitizenTech S.B.P.: a API que entrega ao totem da calçada, ao aplicativo e ao site a mesma informação sobre o ônibus, inclusive para quem não tem celular, bateria ou dados móveis.
 
 ---
 
@@ -16,14 +16,14 @@ FIAP · Engenharia de Software · 3º ano de Fev
 | **Cidadão beneficiado** | Passageiro que depende do ônibus e espera no ponto sem saber quanto tempo falta: trabalhador, estudante, idoso e pessoa com deficiência visual |
 | **Problema, em uma frase** | O cidadão que espera no ponto não sabe quanto tempo ainda vai esperar, e essa incerteza o afasta do transporte público. |
 | **Como funciona** | Um totem na calçada, um aplicativo e um site mostram a previsão de chegada, o mapa do trajeto e as referências urbanas do bairro. O QR Code do totem liga o ponto físico ao celular. |
-| **O que esta disciplina faz** | É o backend que sustenta os três: domínio, banco de dados, API REST documentada e as regras que decidem o que pode ser exibido ao cidadão |
+| **O que esta disciplina faz** | É o backend que sustenta os três: domínio, banco de dados, API REST documentada e as regras que definem o que pode ser exibido ao cidadão |
 | **Indicador de impacto** | Nº de paradas com informação em tempo real no ponto e nº de totens plenamente acessíveis (voz + Braille + parada adaptada) |
 | **ODS conectados** | ODS 9, ODS 10, ODS 11 |
 | **Integrantes** | Alice Santos Bulhões (RM554499) · Eduardo Oliveira Cardoso Madid (RM556349) · Guilherme da Cunha Melo (RM555310) · Nicolas Haubricht Hainfellner (RM556259) |
 
 ---
 
-## O que está neste repositório
+## Conteúdo do repositório
 
 ```
 GS-SOA-2-26/
@@ -34,7 +34,7 @@ GS-SOA-2-26/
 ├── docs/
 │   ├── EVIDENCIAS.md            o que cada evidência comprova
 │   ├── gerar-evidencias.sh      script que captura as respostas da API
-│   └── evidencias/              20 capturas: API, banco, migrações e testes
+│   └── evidencias/              25 evidências: API, banco, migrações, testes e prints
 └── src/
     ├── main/java/br/com/fiap/sbp/    domínio, serviços e camada web
     ├── main/resources/db/migration/  as 6 migrações do Flyway
@@ -71,7 +71,7 @@ docker compose up -d
 
 No Windows, use `mvnw.cmd spring-boot:run`. Na primeira execução o Flyway cria o schema e carrega os dados reais da SPTrans automaticamente.
 
-> Se o start falhar com `Unable to establish loopback connection`, siga pelo caminho em container mais abaixo. É uma limitação do JVM em algumas máquinas Windows, não da aplicação.
+> Se o start falhar com `Unable to establish loopback connection`, siga pelo caminho em container, mais abaixo. É uma limitação da JVM em algumas máquinas Windows, não da aplicação.
 
 **3. Abra a documentação**
 
@@ -98,7 +98,7 @@ Um `Dockerfile` sobe a API junto com o banco, no lugar dos passos 1 e 2:
 docker compose --profile app up -d --build
 ```
 
-A aplicação fica no mesmo endereço, `http://localhost:8080`. O serviço está atrás de um *profile*, então o `docker compose up -d` do passo 1 continua subindo apenas o PostgreSQL. Dentro do container Linux a falha de loopback do Windows não ocorre.
+A aplicação fica no mesmo endereço, `http://localhost:8080`. O serviço está atrás de um *profile*, de modo que o `docker compose up -d` do passo 1 continua subindo apenas o PostgreSQL. Dentro do container Linux a falha de loopback do Windows não ocorre.
 
 ### Configuração por variáveis de ambiente
 
@@ -111,7 +111,7 @@ A aplicação fica no mesmo endereço, `http://localhost:8080`. O serviço está
 
 ## Estruturação do domínio
 
-O código é organizado em camadas, com uma responsabilidade clara em cada uma:
+O código é organizado em camadas, com uma responsabilidade por camada:
 
 ```
 br.com.fiap.sbp
@@ -153,19 +153,19 @@ PontoDeInteresse (ligado às paradas por proximidade geográfica)
 | `Cidadao` | Cadastro do passageiro e suas preferências de acessibilidade |
 | `RotinaProgramada` | O trajeto habitual que alimenta o card Rota de Hoje |
 
-**As regras moram nas entidades, não espalhadas nos serviços.** Alguns exemplos:
+**As regras moram nas entidades, e não dispersas nos serviços.** Alguns exemplos:
 
-- `PrevisaoChegada.emergencia()` — faltam menos de 3 minutos, então a linha ocupa o card principal do carrossel do totem;
-- `PrevisaoChegada.textoAcessivel()` — monta a frase que o sintetizador de voz lê, por extenso e avisando quando o horário é uma estimativa;
-- `Totem.precisaAtencao()` — um totem marcado como ativo que parou de sincronizar continua ligado na rua mostrando informação velha, e precisa ser detectado;
-- `Totem.plenamenteAcessivel()` — só vale como acessível o totem com voz, Braille **e** parada adaptada para cadeirantes;
-- `Parada.distanciaKm()` — Haversine, para responder "qual é o ponto mais perto de mim".
+- `PrevisaoChegada.emergencia()` — faltam menos de 3 minutos, e a linha ocupa o card principal do carrossel do totem;
+- `PrevisaoChegada.textoAcessivel()` — monta a frase que o sintetizador de voz lê, por extenso e sinalizando quando o horário é uma estimativa;
+- `Totem.precisaAtencao()` — um totem marcado como ativo que parou de sincronizar continua na rua exibindo informação desatualizada, e precisa ser detectado;
+- `Totem.plenamenteAcessivel()` — só conta como acessível o totem com voz, Braille **e** parada adaptada para cadeirantes;
+- `Parada.distanciaKm()` — Haversine, para responder qual é o ponto mais próximo do cidadão.
 
-### Uma decisão que vale explicar
+### A origem do dado e a faixa de espera
 
-`PrevisaoChegada` guarda a **origem** do dado: telemetria em tempo real, quadro de horários publicado ou estimativa de um modelo preditivo. O cidadão tem o direito de saber se está vendo onde o ônibus está ou onde ele deveria estar — e o totem anuncia isso em voz alta quando a informação é uma estimativa.
+`PrevisaoChegada` guarda a **origem** do dado: telemetria em tempo real, quadro de horários publicado ou estimativa de um modelo preditivo. O cidadão precisa saber se está vendo onde o ônibus está ou onde ele deveria estar, e o totem anuncia isso em voz alta quando a informação é uma estimativa.
 
-Mais do que isso: quando a previsão vem do modelo, ela carrega uma **faixa** em vez de um número. O modelo erra cerca de 7,6 minutos, então anunciar "24 minutos" prometeria uma precisão que ele não tem. A faixa é calibrada por predição conformal para cobrir 80% dos casos, e a cobertura medida foi de 79,8%. O botão tátil passa a dizer *"deve chegar entre 13 e 37 minutos"*. Previsões de telemetria continuam pontuais, porque são exatas por natureza.
+Quando a previsão vem do modelo, ela carrega uma **faixa** em vez de um número. O modelo erra cerca de 7,6 minutos, de modo que anunciar "24 minutos" atribuiria a ele uma precisão que não tem. A faixa é calibrada por predição conformal para cobrir 80% dos casos, e a cobertura medida foi de 79,8%. O botão tátil passa a dizer *"deve chegar entre 13 e 37 minutos"*. Previsões de telemetria continuam pontuais, por serem exatas por natureza.
 
 O banco e o serviço protegem essa faixa: meia faixa, faixa invertida ou faixa que não contém a própria estimativa são recusadas, tanto por `CHECK` constraints quanto pela camada de negócio.
 
@@ -173,9 +173,9 @@ O banco e o serviço protegem essa faixa: meia faixa, faixa invertida ou faixa q
 
 PostgreSQL 16, acessado por Spring Data JPA com pool HikariCP.
 
-O **Flyway é o dono do schema** e o Hibernate roda com `ddl-auto: validate`: ele apenas confere se o mapeamento das entidades bate com o que as migrações criaram. Se divergirem, a aplicação **não sobe** — o erro aparece no start, e não em produção.
+O **Flyway é o dono do schema** e o Hibernate roda com `ddl-auto: validate`: apenas confere se o mapeamento das entidades corresponde ao que as migrações criaram. Em caso de divergência, a aplicação **não sobe**, e o erro aparece no start em vez de em produção.
 
-As consultas de proximidade (`/api/paradas/proximas`) primeiro filtram por uma **caixa de coordenadas** no banco, aproveitando o índice composto `(latitude, longitude)`, e só depois calculam a distância exata em memória. Sem isso, cada consulta do aplicativo percorreria as 22 mil paradas da cidade.
+As consultas de proximidade (`/api/paradas/proximas`) primeiro filtram por uma **caixa de coordenadas** no banco, aproveitando o índice composto `(latitude, longitude)`, e só depois calculam a distância exata em memória. Sem esse pré-filtro, cada consulta do aplicativo percorreria as 22 mil paradas da cidade.
 
 ## Migrações
 
@@ -186,16 +186,16 @@ src/main/resources/db/migration/
 ├── V3__adicionar_classificacao_ml_na_parada.sql   classificação das paradas por oferta e espera
 ├── V4__carregar_dados_sptrans.sql            carga de dados reais da SPTrans
 ├── V5__ajustar_piloto_dos_totens.sql         correção do piloto, feita ao exercitar a API
-└── V6__adicionar_faixa_de_espera.sql         faixa de 80% nas previsões   
+└── V6__adicionar_faixa_de_espera.sql         faixa de 80% nas previsões
 ```
 
 `V3` incorpora ao domínio o resultado de uma análise prévia das 21.933 paradas de São Paulo, que as agrupou por oferta e espera e produziu uma fila de instalação dos totens. A classificação entra como as colunas `grupo_ml` e `prioridade_totem` da parada, e é a partir dela que a API responde quais paradas são prioritárias.
 
-`V4` carrega **dados reais**: 12 linhas, 276 paradas e seus itinerários, extraídos do GTFS oficial da SPTrans (https://www.sptrans.com.br/desenvolvedores/), válido de 01/10/2023 a 01/06/2027. Os cadastros de cidadãos ao final são **fictícios** — conforme os combinados da GS, nenhum dado pessoal real é utilizado.
+`V4` carrega **dados reais**: 12 linhas, 276 paradas e seus itinerários, extraídos do GTFS oficial da SPTrans (https://www.sptrans.com.br/desenvolvedores/), válido de 01/10/2023 a 01/06/2027. Os cadastros de cidadãos ao final são **fictícios**: nenhum dado pessoal real é utilizado, conforme exigido pela Global Solution.
 
 ## Documentação automática dos endpoints
 
-Gerada pelo springdoc a partir do próprio código: as anotações nos controladores e nos DTOs viram a especificação OpenAPI 3. Assim a documentação não envelhece em relação à implementação, e fica em **http://localhost:8080/swagger-ui.html**.
+Gerada pelo springdoc a partir do próprio código: as anotações nos controladores e nos DTOs produzem a especificação OpenAPI 3. A documentação não envelhece em relação à implementação, e fica em **http://localhost:8080/swagger-ui.html**.
 
 ### Os principais endpoints
 
@@ -229,7 +229,7 @@ Todos os erros respondem no mesmo formato, tratado por um `@RestControllerAdvice
 
 Erros de validação acrescentam o campo `camposInvalidos`, apontando cada campo e o motivo.
 
-### Experimentando em 30 segundos
+### Verificação rápida
 
 ```bash
 curl http://localhost:8080/api/totens/SBP-0003/painel
@@ -243,7 +243,7 @@ curl "http://localhost:8080/api/paradas/proximas?latitude=-23.4319&longitude=-46
 curl http://localhost:8080/api/totens/qrcode/sbp-c3d4e5f6a1b2
 ```
 
-O totem `SBP-0004` está propositalmente em manutenção na carga inicial, para demonstrar a regra que impede um equipamento fora de operação de exibir informação (HTTP 409).
+O totem `SBP-0004` está deliberadamente em manutenção na carga inicial, para demonstrar a regra que impede um equipamento fora de operação de exibir informação (HTTP 409).
 
 > As previsões expiram em 5 minutos por regra de negócio. Se o painel vier com `"previsoes": []`, registre previsões novas com `bash docs/gerar-evidencias.sh`, que as envia pela própria API antes de capturar as respostas.
 
@@ -268,7 +268,7 @@ Os testes rodam sobre **H2 em memória**, para que a suíte execute em qualquer 
 
 ## Evidências
 
-[`docs/evidencias/`](docs/evidencias/) tem 25 evidências da aplicação no ar: 16 respostas da API, cada uma com o método, o caminho, o JSON e o código HTTP; 4 consultas feitas direto no banco e na suíte de testes; e 5 prints de tela do Swagger UI, do Flyway, dos testes e do banco. As quatro que mais mostram o projeto funcionando:
+[`docs/evidencias/`](docs/evidencias/) tem 25 evidências da aplicação no ar: 15 respostas da API, cada uma com o método, o caminho, o JSON e o código HTTP; a especificação OpenAPI completa; 4 consultas feitas direto no banco e na suíte de testes; e 5 prints de tela do Swagger UI, do Flyway, dos testes e do banco. As quatro mais representativas:
 
 | Evidência | O que comprova |
 | :--- | :--- |
@@ -281,4 +281,4 @@ A lista completa e o passo a passo para gerar tudo de novo estão em [`docs/EVID
 
 ## Uso de IA
 
-Conforme os combinados da GS, o uso de IA como copiloto está registrado em [`prompts.md`](prompts.md).
+O uso de IA como copiloto está registrado em [`prompts.md`](prompts.md), conforme exigido pela atividade.

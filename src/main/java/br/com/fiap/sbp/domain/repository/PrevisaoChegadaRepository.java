@@ -14,8 +14,8 @@ import java.util.List;
 public interface PrevisaoChegadaRepository extends JpaRepository<PrevisaoChegada, Long> {
 
     /**
-     * Previsoes vigentes de uma parada, da mais proxima para a mais distante.
-     * E a consulta que monta o painel do totem e a tela do ponto no aplicativo.
+     * Previsões vigentes de uma parada, da mais próxima para a mais distante.
+     * É a consulta que monta o painel do totem e a tela do ponto no aplicativo.
      */
     @Query("""
             SELECT pr FROM PrevisaoChegada pr
@@ -38,7 +38,7 @@ public interface PrevisaoChegadaRepository extends JpaRepository<PrevisaoChegada
                                                         @Param("linhaId") Long linhaId,
                                                         @Param("desde") LocalDateTime desde);
 
-    /** Limpeza das previsoes que ja nao podem ser exibidas ao cidadao. */
+    /** Limpeza das previsões que já não podem ser exibidas ao cidadão. */
     @Modifying
     @Query("DELETE FROM PrevisaoChegada pr WHERE pr.geradaEm < :limite")
     int removerAnterioresA(@Param("limite") LocalDateTime limite);

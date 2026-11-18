@@ -1,8 +1,8 @@
 package br.com.fiap.sbp.domain.enums;
 
 /**
- * Categorias de referencia urbana exibidas no mapa do totem.
- * Sao os marcos que o passageiro reconhece na rua, e nao apenas o nome da parada.
+ * Categorias de referência urbana exibidas no mapa do totem: os marcos que o
+ * passageiro reconhece na rua, e não apenas o nome da parada.
  */
 public enum CategoriaPontoInteresse {
 

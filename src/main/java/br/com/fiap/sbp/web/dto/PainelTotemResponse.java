@@ -6,12 +6,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Tudo o que a tela do totem precisa exibir, em uma unica chamada.
+ * Tudo o que a tela do totem precisa exibir, em uma única chamada.
  *
- * <p>O totem fica na calcada, muitas vezes com conexao instavel. Em vez de
- * obrigar o equipamento a fazer cinco chamadas para montar a tela, a API entrega
- * o painel pronto: parada, previsoes, destaque do carrossel, referencias urbanas
- * e o texto de acessibilidade ja montado.</p>
+ * <p>O totem fica na calçada, muitas vezes com conexão instável. Em vez de
+ * obrigar o equipamento a cinco chamadas para montar a tela, a API entrega o
+ * painel pronto: parada, previsões, destaque do carrossel, referências urbanas
+ * e o texto de acessibilidade já montado.</p>
  */
 @Schema(description = "Painel completo exibido na tela do totem")
 public record PainelTotemResponse(

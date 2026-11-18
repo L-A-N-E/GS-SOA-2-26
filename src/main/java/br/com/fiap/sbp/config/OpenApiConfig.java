@@ -11,16 +11,15 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 /**
- * Documentacao automatica da API, em OpenAPI 3 com Swagger UI.
+ * Documentação automática da API, em OpenAPI 3 com Swagger UI.
  *
- * <p>A documentacao e gerada a partir do proprio codigo pelo springdoc: as
- * anotacoes nos controladores e nos DTOs viram a especificacao. Assim ela nao
- * envelhece em relacao a implementacao, que e o problema de manter documentacao
- * escrita a mao.</p>
+ * <p>A documentação é gerada a partir do próprio código pelo springdoc: as
+ * anotações nos controladores e nos DTOs produzem a especificação, que assim
+ * não envelhece em relação à implementação.</p>
  *
  * <ul>
- *   <li>Interface: <a href="http://localhost:8080/swagger-ui.html">/swagger-ui.html</a></li>
- *   <li>Especificacao: <a href="http://localhost:8080/v3/api-docs">/v3/api-docs</a></li>
+ * <li>Interface: <a href="http://localhost:8080/swagger-ui.html">/swagger-ui.html</a></li>
+ * <li>Especificação: <a href="http://localhost:8080/v3/api-docs">/v3/api-docs</a></li>
  * </ul>
  */
 @Configuration

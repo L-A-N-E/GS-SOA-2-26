@@ -11,12 +11,12 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 /**
- * Totem fisico instalado na calcada.
+ * Totem físico instalado na calçada.
  *
- * <p>E o equipamento que sustenta o pilar de inclusao do S.B.P.: o cidadao sem
- * celular, sem bateria ou sem dados moveis continua tendo a mesma informacao.
- * O tokenQrCode e o que liga o mundo fisico ao digital: ao ler o QR Code, o
- * passageiro abre no celular exatamente o ponto em que esta.</p>
+ * <p>É o equipamento que sustenta o pilar de inclusão do S.B.P.: o cidadão sem
+ * celular, sem bateria ou sem dados móveis continua tendo a mesma informação.
+ * O tokenQrCode liga o mundo físico ao digital: ao ler o QR Code, o passageiro
+ * abre no celular exatamente o ponto em que está.</p>
  */
 @Entity
 @Table(name = "tb_totem", indexes = {
@@ -30,7 +30,7 @@ import java.time.LocalDateTime;
 @Builder
 public class Totem {
 
-    /** Depois desse tempo sem sincronizar, o totem e considerado sem comunicacao. */
+    /** Depois desse tempo sem sincronizar, o totem é considerado sem comunicação. */
     public static final int MINUTOS_LIMITE_SINCRONIZACAO = 15;
 
     @Id
@@ -84,7 +84,7 @@ public class Totem {
         }
     }
 
-    /** Minutos decorridos desde a ultima sincronizacao, ou null se nunca sincronizou. */
+    /** Minutos decorridos desde a última sincronização, ou null se nunca sincronizou. */
     public Long minutosDesdeUltimaSincronizacao() {
         if (ultimaSincronizacao == null) {
             return null;
@@ -94,7 +94,7 @@ public class Totem {
 
     /**
      * Um totem ativo que parou de se comunicar continua marcado como ativo no
-     * banco, mas ja nao mostra informacao confiavel: a operacao precisa ser avisada.
+     * banco, mas já não exibe informação confiável: a operação precisa ser avisada.
      */
     public boolean precisaAtencao() {
         if (status == StatusTotem.MANUTENCAO || status == StatusTotem.SEM_COMUNICACAO) {
@@ -105,7 +105,7 @@ public class Totem {
                 && (minutos == null || minutos > MINUTOS_LIMITE_SINCRONIZACAO);
     }
 
-    /** Indica se o totem atende integralmente a Lei Brasileira de Inclusao. */
+    /** Indica se o totem atende integralmente a Lei Brasileira de Inclusão. */
     public boolean plenamenteAcessivel() {
         return possuiAudioTts && possuiBraille
                 && parada != null && parada.isAcessivelCadeirante();

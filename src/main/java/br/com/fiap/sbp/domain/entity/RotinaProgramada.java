@@ -12,11 +12,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Trajeto habitual que o cidadao salvou no aplicativo.
+ * Trajeto habitual que o cidadão salvou no aplicativo.
  *
- * <p>E o que sustenta o card Rota de Hoje da tela inicial: no horario e no dia
- * certos, o aplicativo ja abre mostrando a linha que a pessoa costuma pegar, sem
- * que ela precise pesquisar nada.</p>
+ * <p>Sustenta o card Rota de Hoje da tela inicial: no horário e no dia certos,
+ * o aplicativo já abre mostrando a linha que a pessoa costuma pegar, sem
+ * necessidade de pesquisa.</p>
  */
 @Entity
 @Table(name = "tb_rotina_programada",
@@ -28,7 +28,7 @@ import java.util.Set;
 @Builder
 public class RotinaProgramada {
 
-    /** Janela, em minutos, em que a rotina e considerada proxima do horario habitual. */
+    /** Janela, em minutos, em que a rotina é considerada próxima do horário habitual. */
     public static final int JANELA_MINUTOS = 30;
 
     @Id
@@ -87,8 +87,8 @@ public class RotinaProgramada {
     }
 
     /**
-     * Indica se o momento informado esta dentro da janela do deslocamento
-     * habitual, condicao para o card Rota de Hoje aparecer na tela inicial.
+     * Indica se o momento informado está dentro da janela do deslocamento
+     * habitual, condição para o card Rota de Hoje aparecer na tela inicial.
      */
     public boolean proximaDoHorario(LocalTime agora) {
         if (horarioHabitual == null || agora == null) {

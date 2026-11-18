@@ -25,11 +25,11 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 /**
- * Testa a regra que protege a faixa de espera exibida ao cidadao.
+ * Testa a regra que protege a faixa de espera exibida ao cidadão.
  *
- * <p>Uma faixa pela metade, invertida ou que nao contem a propria estimativa
- * apareceria no totem como se fosse confiavel. E melhor recusar a previsao do
- * que publicar um intervalo sem sentido na calcada.</p>
+ * <p>Uma faixa pela metade, invertida ou que não contém a própria estimativa
+ * apareceria no totem como se fosse confiável. Recusar a previsão é melhor do
+ * que publicar um intervalo sem sentido na calçada.</p>
  */
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)

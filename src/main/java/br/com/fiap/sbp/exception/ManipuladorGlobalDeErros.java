@@ -18,9 +18,8 @@ import java.util.Map;
 /**
  * Centraliza o tratamento de erros de toda a API.
  *
- * <p>Sem isso, cada controlador precisaria tratar as mesmas falhas. Aqui, uma
- * excecao de dominio vira sempre a mesma resposta HTTP, com uma mensagem que o
- * cidadao consegue entender e sem vazar detalhes internos do servidor.</p>
+ * <p>Uma exceção de domínio vira sempre a mesma resposta HTTP, com uma mensagem
+ * compreensível ao cidadão e sem vazar detalhes internos do servidor.</p>
  */
 @RestControllerAdvice
 public class ManipuladorGlobalDeErros {

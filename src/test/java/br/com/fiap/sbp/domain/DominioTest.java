@@ -19,9 +19,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Testa as regras que vivem dentro das entidades.
  *
- * <p>Sao as decisoes que o cidadao ve na tela: se o onibus ja esta no ponto, se
- * a linha entra no carrossel de emergencia, o que o totem fala em voz alta e
- * quando a operacao precisa ser avisada de um equipamento mudo.</p>
+ * <p>São as decisões que o cidadão vê na tela: se o ônibus já está no ponto, se
+ * a linha entra no carrossel de emergência, o que o totem fala em voz alta e
+ * quando a operação precisa ser avisada de um equipamento sem comunicação.</p>
  */
 class DominioTest {
 
@@ -32,7 +32,7 @@ class DominioTest {
         @Test
         @DisplayName("Calcula a distância entre duas coordenadas conhecidas de São Paulo")
         void calculaDistancia() {
-            // Praca da Se -> MASP: cerca de 2,7 km em linha reta
+            // Praça da Sé -> MASP: cerca de 2,7 km em linha reta
             Parada se = Parada.builder()
                     .nome("Praça da Sé").latitude(-23.5505).longitude(-46.6333).build();
 

@@ -21,12 +21,12 @@ public interface ParadaRepository extends JpaRepository<Parada, Long> {
     Page<Parada> findByNomeContainingIgnoreCase(String nome, Pageable paginacao);
 
     /**
-     * Pre-filtra as paradas dentro de uma caixa de coordenadas.
+     * Pré-filtra as paradas dentro de uma caixa de coordenadas.
      *
-     * <p>A distancia exata e calculada depois, em memoria, pelo metodo
-     * {@code Parada.distanciaKm}. O filtro por caixa existe para que o banco nao
-     * precise percorrer as 22 mil paradas da cidade a cada consulta do aplicativo,
-     * aproveitando o indice composto de latitude e longitude.</p>
+     * <p>A distância exata é calculada depois, em memória, pelo método
+     * {@code Parada.distanciaKm}. O filtro por caixa evita que o banco percorra as
+     * 22 mil paradas da cidade a cada consulta do aplicativo, aproveitando o índice
+     * composto de latitude e longitude.</p>
      */
     @Query("""
             SELECT p FROM Parada p
@@ -38,7 +38,7 @@ public interface ParadaRepository extends JpaRepository<Parada, Long> {
                                @Param("lonMin") double lonMin,
                                @Param("lonMax") double lonMax);
 
-    /** Paradas servidas por uma linha, na ordem em que o onibus passa. */
+    /** Paradas servidas por uma linha, na ordem em que o ônibus passa. */
     @Query("""
             SELECT i.parada FROM Itinerario i
             WHERE i.linha.id = :linhaId

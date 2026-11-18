@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/** Regras de negocio das linhas de onibus. */
+/** Regras de negócio das linhas de ônibus. */
 @Service
 public class LinhaService {
 
@@ -26,8 +26,8 @@ public class LinhaService {
     }
 
     /**
-     * Busca unificada da aba Explorar: aceita o numero da linha ou parte do nome
-     * do trajeto, e opcionalmente filtra por area de operacao.
+     * Busca unificada da aba Explorar: aceita o número da linha ou parte do nome
+     * do trajeto, e opcionalmente filtra por área de operação.
      */
     @Transactional(readOnly = true)
     public Page<LinhaResponse> listar(String termo, AreaOperacao area, Pageable paginacao) {

@@ -18,17 +18,17 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Regras de negocio das previsoes de chegada.
+ * Regras de negócio das previsões de chegada.
  *
- * <p>Concentra a decisao de o que pode ser exibido ao cidadao. Uma previsao
- * velha e pior do que nenhuma previsao: o passageiro que ve um numero
- * desatualizado perde o onibus achando que ainda tem tempo. Por isso tudo o que
- * sai daqui passa pelo filtro de validade.</p>
+ * <p>Concentra a decisão do que pode ser exibido ao cidadão. Uma previsão velha
+ * é pior do que nenhuma: o passageiro que vê um número desatualizado perde o
+ * ônibus supondo que ainda tem tempo. Tudo o que sai daqui passa pelo filtro de
+ * validade.</p>
  */
 @Service
 public class PrevisaoService {
 
-    /** Limite superior aceito para uma previsao, em minutos. */
+    /** Limite superior aceito para uma previsão, em minutos. */
     private static final int MINUTOS_MAXIMOS = 180;
 
     private final PrevisaoChegadaRepository previsaoRepository;
@@ -43,7 +43,7 @@ public class PrevisaoService {
         this.paradaService = paradaService;
     }
 
-    /** Previsoes vigentes de uma parada, da mais proxima para a mais distante. */
+    /** Previsões vigentes de uma parada, da mais próxima para a mais distante. */
     @Transactional(readOnly = true)
     public List<PrevisaoResponse> buscarVigentesPorParada(Long paradaId) {
         paradaService.buscarEntidade(paradaId);
@@ -62,8 +62,8 @@ public class PrevisaoService {
     }
 
     /**
-     * Veiculo a menos de 3 minutos, que ocupa o card principal do carrossel do
-     * totem. Entre varios candidatos, vence o mais proximo.
+     * Veículo a menos de 3 minutos, que ocupa o card principal do carrossel do
+     * totem. Entre vários candidatos, vence o mais próximo.
      */
     @Transactional(readOnly = true)
     public Optional<PrevisaoChegada> buscarDestaqueDoCarrossel(Long paradaId) {
@@ -101,11 +101,11 @@ public class PrevisaoService {
     }
 
     /**
-     * Confere a coerencia da faixa de espera.
+     * Confere a coerência da faixa de espera.
      *
-     * <p>Uma faixa pela metade, invertida ou que nao contem a propria estimativa
-     * central seria exibida ao cidadao como se fosse confiavel. E melhor recusar
-     * a previsao do que publicar um intervalo sem sentido no totem.</p>
+     * <p>Uma faixa pela metade, invertida ou que não contém a própria estimativa
+     * central seria exibida ao cidadão como se fosse confiável. Recusar a previsão
+     * é melhor do que publicar um intervalo sem sentido no totem.</p>
      */
     private void validarFaixa(PrevisaoRequest requisicao) {
         Integer minimo = requisicao.faixaMinMinutos();
@@ -132,11 +132,11 @@ public class PrevisaoService {
     }
 
     /**
-     * Remove as previsoes que ja nao podem ser exibidas.
+     * Remove as previsões que já não podem ser exibidas.
      *
-     * <p>Sem essa limpeza, a tabela cresce indefinidamente e as consultas do
-     * painel ficam lentas justamente nos horarios de pico, quando mais gente
-     * esta no ponto.</p>
+     * <p>Sem essa limpeza, a tabela cresce indefinidamente e as consultas do painel
+     * ficam lentas justamente nos horários de pico, quando mais gente está no
+     * ponto.</p>
      */
     @Transactional
     public int limparExpiradas() {

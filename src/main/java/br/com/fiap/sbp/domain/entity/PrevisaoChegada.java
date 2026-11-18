@@ -10,12 +10,12 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 /**
- * Previsao de chegada de uma linha a uma parada.
+ * Previsão de chegada de uma linha a uma parada.
  *
- * <p>E o dado central do S.B.P.: a resposta para a pergunta que o cidadao faz na
- * calcada. A origem registra de onde a informacao veio, porque o passageiro tem
- * o direito de saber se esta vendo a posicao real do veiculo, o quadro de
- * horarios publicado ou uma estimativa do modelo de Machine Learning.</p>
+ * <p>É o dado central do S.B.P.: a resposta à pergunta que o cidadão faz na
+ * calçada. A origem registra de onde a informação veio, porque o passageiro
+ * precisa saber se está vendo a posição real do veículo, o quadro de horários
+ * publicado ou uma estimativa do modelo de Machine Learning.</p>
  */
 @Entity
 @Table(name = "tb_previsao_chegada", indexes = {
@@ -30,10 +30,10 @@ import java.time.LocalDateTime;
 @Builder
 public class PrevisaoChegada {
 
-    /** Abaixo desse tempo o veiculo ocupa o card principal do carrossel do totem. */
+    /** Abaixo desse tempo o veículo ocupa o card principal do carrossel do totem. */
     public static final int MINUTOS_EMERGENCIA = 3;
 
-    /** Depois desse tempo a previsao e considerada velha demais para ser exibida. */
+    /** Depois desse tempo a previsão é considerada velha demais para ser exibida. */
     public static final int MINUTOS_VALIDADE = 5;
 
     @Id
@@ -73,13 +73,13 @@ public class PrevisaoChegada {
     /**
      * Extremos da faixa de espera, em minutos.
      *
-     * <p>Quando a previsao vem do modelo de Machine Learning, anunciar um numero
-     * unico daria ao cidadao uma precisao que o modelo nao tem. O modelo publica
-     * entao uma faixa calibrada por predicao conformal, com cobertura verificada
+     * <p>Quando a previsão vem do modelo de Machine Learning, um número único
+     * atribuiria ao modelo uma precisão que ele não tem. O modelo publica, em vez
+     * disso, uma faixa calibrada por predição conformal, com cobertura verificada
      * de 80%: a espera real cai dentro dela em 4 de cada 5 vezes.</p>
      *
-     * <p>Ficam nulos quando a previsao vem da telemetria ou do quadro publicado,
-     * que sao pontuais por natureza.</p>
+     * <p>Ficam nulos quando a previsão vem da telemetria ou do quadro publicado,
+     * que são pontuais por natureza.</p>
      */
     @PositiveOrZero(message = "O limite inferior da faixa não pode ser negativo")
     @Column(name = "faixa_min_minutos")
@@ -94,33 +94,33 @@ public class PrevisaoChegada {
     @Column(name = "gerada_em", nullable = false)
     private LocalDateTime geradaEm = LocalDateTime.now();
 
-    /** O onibus ja esta na parada: o totem exibe a mensagem O onibus esta aqui. */
+    /** O ônibus já está na parada: o totem anuncia que a linha está no ponto agora. */
     public boolean onibusNoPonto() {
         return minutosEstimados != null && minutosEstimados <= 0;
     }
 
     /**
-     * Veiculo a menos de 3 minutos. O totem promove essa previsao ao card
+     * Veículo a menos de 3 minutos. O totem promove essa previsão ao card
      * principal do carrossel por 10 segundos, com mapa e dados detalhados.
      */
     public boolean emergencia() {
         return minutosEstimados != null && minutosEstimados < MINUTOS_EMERGENCIA;
     }
 
-    /** Previsao velha demais para continuar na tela. */
+    /** Previsão velha demais para continuar na tela. */
     public boolean expirada() {
         return geradaEm == null
                 || geradaEm.isBefore(LocalDateTime.now().minusMinutes(MINUTOS_VALIDADE));
     }
 
-    /** Indica se a previsao traz uma faixa de espera, e nao apenas um numero. */
+    /** Indica se a previsão traz uma faixa de espera, e não apenas um número. */
     public boolean possuiFaixa() {
         return faixaMinMinutos != null && faixaMaxMinutos != null;
     }
 
     /**
      * Texto curto da faixa para a tela do totem, por exemplo {@code "8 a 25 min"}.
-     * Devolve {@code null} quando nao ha faixa, para que a tela mostre so o numero.
+     * Devolve {@code null} quando não há faixa, para que a tela mostre só o número.
      */
     public String faixaFormatada() {
         if (!possuiFaixa()) {
@@ -130,12 +130,13 @@ public class PrevisaoChegada {
     }
 
     /**
-     * Frase lida em voz alta pelo totem quando o cidadao aciona o botao tatil.
-     * Escrita por extenso, sem abreviacao, para o sintetizador de voz.
+     * Frase lida em voz alta pelo totem quando o cidadão aciona o botão tátil.
+     * Escrita por extenso, sem abreviação, para o sintetizador de voz.
      *
-     * <p>Quando a previsao e uma estimativa com faixa, o totem anuncia a faixa em
-     * vez do numero: prometer precisao que o modelo nao tem seria enganar quem
-     * depende da informacao para decidir se espera ou procura outro caminho.</p>
+     * <p>Quando a previsão é uma estimativa com faixa, o totem anuncia a faixa em
+     * vez do número: atribuir ao modelo uma precisão que ele não tem induziria ao
+     * erro quem depende da informação para decidir se espera ou procura outro
+     * caminho.</p>
      */
     public String textoAcessivel() {
         String nomeLinha = linha != null ? linha.getCodigo() : "linha";

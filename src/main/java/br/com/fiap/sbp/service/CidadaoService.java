@@ -19,16 +19,16 @@ import java.time.LocalTime;
 import java.util.List;
 
 /**
- * Regras de negocio do cidadao e das suas rotinas.
+ * Regras de negócio do cidadão e das suas rotinas.
  *
- * <p>A rotina programada e o que torna o aplicativo util no dia a dia: no
- * horario e no dia certos, a tela inicial ja abre com a linha que a pessoa
- * costuma pegar, sem que ela precise pesquisar nada.</p>
+ * <p>A rotina programada é o que torna o aplicativo útil no dia a dia: no
+ * horário e no dia certos, a tela inicial já abre com a linha que a pessoa
+ * costuma pegar, sem necessidade de pesquisa.</p>
  */
 @Service
 public class CidadaoService {
 
-    /** Limite de rotinas por cidadao, para manter a tela inicial legivel. */
+    /** Limite de rotinas por cidadão, para manter a tela inicial legível. */
     private static final int MAXIMO_ROTINAS = 10;
 
     private final CidadaoRepository cidadaoRepository;
@@ -96,8 +96,8 @@ public class CidadaoService {
     }
 
     /**
-     * Card Rota de Hoje: as rotinas ativas do cidadao para o dia de hoje,
-     * comecando pelas que estao dentro da janela do horario habitual.
+     * Card Rota de Hoje: as rotinas ativas do cidadão para o dia de hoje,
+     * começando pelas que estão dentro da janela do horário habitual.
      */
     @Transactional(readOnly = true)
     public List<RotinaResponse> buscarRotaDeHoje(Long cidadaoId) {

@@ -15,7 +15,7 @@ public interface RotinaProgramadaRepository extends JpaRepository<RotinaPrograma
     List<RotinaProgramada> findByCidadaoId(Long cidadaoId);
 
     /**
-     * Rotinas ativas do cidadao para um dia da semana.
+     * Rotinas ativas do cidadão para um dia da semana.
      * Alimenta o card Rota de Hoje da tela inicial do aplicativo.
      */
     @Query("""

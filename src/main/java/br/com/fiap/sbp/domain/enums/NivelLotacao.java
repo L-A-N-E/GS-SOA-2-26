@@ -1,6 +1,6 @@
 package br.com.fiap.sbp.domain.enums;
 
-/** Lotacao do veiculo, exibida no totem e no aplicativo. */
+/** Lotação do veículo, exibida no totem e no aplicativo. */
 public enum NivelLotacao {
 
     VAZIO("Lugares sentados disponíveis"),

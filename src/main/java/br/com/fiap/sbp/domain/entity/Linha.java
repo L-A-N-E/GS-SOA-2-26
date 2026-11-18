@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Linha de onibus da rede municipal.
+ * Linha de ônibus da rede municipal.
  *
- * <p>Corresponde a uma route do GTFS da SPTrans. O codigo segue o padrao da
- * cidade (por exemplo 8000-10); linhas iniciadas em N sao as linhas noturnas do
- * Corujao, que tem intervalo de espera muito maior e por isso recebem tratamento
- * proprio no painel do totem.</p>
+ * <p>Corresponde a uma route do GTFS da SPTrans. O código segue o padrão da
+ * cidade (por exemplo 8000-10); linhas iniciadas em N são as linhas noturnas do
+ * Corujão, que têm intervalo de espera muito maior e recebem tratamento próprio
+ * no painel do totem.</p>
  */
 @Entity
 @Table(name = "tb_linha", indexes = {
@@ -73,14 +73,14 @@ public class Linha {
     private List<Itinerario> itinerarios = new ArrayList<>();
 
     /**
-     * Indica se e uma linha noturna (Corujao). O S.B.P. destaca essas linhas
-     * porque a espera media passa de cerca de 15 para cerca de 60 minutos.
+     * Indica se é uma linha noturna (Corujão). O S.B.P. destaca essas linhas
+     * porque a espera média passa de cerca de 15 para cerca de 60 minutos.
      */
     public boolean noturna() {
         return codigo != null && codigo.toUpperCase().startsWith("N");
     }
 
-    /** Velocidade media programada, usada para estimar o tempo ate a proxima parada. */
+    /** Velocidade média programada, usada para estimar o tempo até a próxima parada. */
     public Double velocidadeMediaKmh() {
         if (extensaoKm == null || duracaoProgramadaMin == null || duracaoProgramadaMin <= 0) {
             return null;
@@ -88,7 +88,7 @@ public class Linha {
         return extensaoKm / (duracaoProgramadaMin / 60.0);
     }
 
-    /** Mantem os dois lados da associacao coerentes. */
+    /** Mantém os dois lados da associação coerentes. */
     public void adicionarItinerario(Itinerario itinerario) {
         itinerarios.add(itinerario);
         itinerario.setLinha(this);

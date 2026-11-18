@@ -6,11 +6,11 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 /**
- * Referencia urbana exibida no mapa do totem.
+ * Referência urbana exibida no mapa do totem.
  *
- * <p>Hospitais, shoppings, estacoes de metro e teatros sao os marcos que o
- * passageiro usa de fato para se localizar. Mostrar o itinerario apenas com o
- * nome das paradas nao ajuda quem nao conhece o bairro.</p>
+ * <p>Hospitais, shoppings, estações de metrô e teatros são os marcos que o
+ * passageiro usa para se localizar. O itinerário apenas com o nome das paradas
+ * não ajuda quem não conhece o bairro.</p>
  */
 @Entity
 @Table(name = "tb_ponto_interesse", indexes = {
@@ -56,7 +56,7 @@ public class PontoDeInteresse {
     @Column(name = "endereco", length = 200)
     private String endereco;
 
-    /** Distancia em quilometros ate uma parada, pela formula de Haversine. */
+    /** Distância em quilômetros até uma parada, pela fórmula de Haversine. */
     public double distanciaKm(double outraLatitude, double outraLongitude) {
         double lat1 = Math.toRadians(this.latitude);
         double lat2 = Math.toRadians(outraLatitude);

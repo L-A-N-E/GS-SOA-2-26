@@ -16,18 +16,18 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Regras de negocio das paradas de onibus.
+ * Regras de negócio das paradas de ônibus.
  *
- * <p>Alem do cadastro, concentra a busca por proximidade, que e a porta de
- * entrada do aplicativo e do site: a pergunta qual e o ponto mais perto de mim.</p>
+ * <p>Além do cadastro, concentra a busca por proximidade, que é a porta de
+ * entrada do aplicativo e do site: qual é o ponto mais perto de mim.</p>
  */
 @Service
 public class ParadaService {
 
-    /** Grau de latitude em quilometros, usado para montar a caixa de busca. */
+    /** Grau de latitude em quilômetros, usado para montar a caixa de busca. */
     private static final double KM_POR_GRAU_LATITUDE = 111.0;
 
-    /** Raio maximo aceito na busca por proximidade, para nao varrer a cidade inteira. */
+    /** Raio máximo aceito na busca por proximidade, para não varrer a cidade inteira. */
     private static final double RAIO_MAXIMO_KM = 5.0;
 
     private final ParadaRepository paradaRepository;
@@ -62,9 +62,9 @@ public class ParadaService {
     /**
      * Paradas dentro de um raio, da mais perto para a mais longe.
      *
-     * <p>Primeiro o banco filtra por uma caixa de coordenadas, aproveitando o
-     * indice; depois a distancia exata e calculada em memoria pela formula de
-     * Haversine. Filtrar antes evita calcular a distancia das 22 mil paradas da
+     * <p>O banco filtra primeiro por uma caixa de coordenadas, aproveitando o
+     * índice; a distância exata é calculada depois, em memória, pela fórmula de
+     * Haversine. O pré-filtro evita calcular a distância das 22 mil paradas da
      * cidade a cada consulta.</p>
      */
     @Transactional(readOnly = true)
@@ -130,7 +130,7 @@ public class ParadaService {
         paradaRepository.delete(parada);
     }
 
-    /** Acesso interno a entidade, usado pelos demais servicos. */
+    /** Acesso interno à entidade, usado pelos demais serviços. */
     @Transactional(readOnly = true)
     public Parada buscarEntidade(Long id) {
         return paradaRepository.findById(id)

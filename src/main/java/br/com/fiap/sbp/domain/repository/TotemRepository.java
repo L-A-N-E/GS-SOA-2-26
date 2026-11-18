@@ -18,7 +18,7 @@ public interface TotemRepository extends JpaRepository<Totem, Long> {
 
     Optional<Totem> findByCodigoIgnoreCase(String codigo);
 
-    /** Usado quando o cidadao le o QR Code do totem com o celular. */
+    /** Usado quando o cidadão lê o QR Code do totem com o celular. */
     Optional<Totem> findByTokenQrCode(String tokenQrCode);
 
     boolean existsByCodigoIgnoreCase(String codigo);
@@ -29,7 +29,7 @@ public interface TotemRepository extends JpaRepository<Totem, Long> {
 
     /**
      * Totens que deveriam estar operando mas pararam de sincronizar.
-     * Alimenta o painel de monitoramento da operacao.
+     * Alimenta o painel de monitoramento da operação.
      */
     @Query("""
             SELECT t FROM Totem t

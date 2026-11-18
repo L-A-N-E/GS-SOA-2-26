@@ -6,9 +6,9 @@ import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 /**
- * Posicao de uma parada dentro do trajeto de uma linha.
+ * Posição de uma parada dentro do trajeto de uma linha.
  *
- * <p>E a associacao que permite ao totem desenhar o mapa de rota: a sequencia
+ * <p>É a associação que permite ao totem desenhar o mapa de rota: a sequência
  * ordenada das paradas pelas quais a linha passa.</p>
  */
 @Entity

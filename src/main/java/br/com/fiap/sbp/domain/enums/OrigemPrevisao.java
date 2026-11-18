@@ -1,7 +1,7 @@
 package br.com.fiap.sbp.domain.enums;
 
 /**
- * De onde veio a previsao exibida ao cidadao.
+ * De onde veio a previsão exibida ao cidadão.
  * A ordem do enum representa a confiabilidade, da maior para a menor.
  */
 public enum OrigemPrevisao {
@@ -26,7 +26,7 @@ public enum OrigemPrevisao {
         return confiabilidade;
     }
 
-    /** Indica se a previsao e uma estimativa, e nao uma observacao. */
+    /** Indica se a previsão é uma estimativa, e não uma observação. */
     public boolean estimada() {
         return this == MODELO_ML;
     }

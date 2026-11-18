@@ -2,7 +2,7 @@ package br.com.fiap.sbp.domain.enums;
 
 import java.time.DayOfWeek;
 
-/** Dias em que uma rotina programada do cidadao deve ser lembrada. */
+/** Dias em que uma rotina programada do cidadão deve ser lembrada. */
 public enum DiaSemana {
 
     SEGUNDA(DayOfWeek.MONDAY),

@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Testa a camada HTTP das paradas: codigos de resposta, validacao de entrada e
+ * Testa a camada HTTP das paradas: códigos de resposta, validação de entrada e
  * o formato padronizado de erro que o aplicativo, o site e o totem consomem.
  */
 @WebMvcTest(ParadaController.class)

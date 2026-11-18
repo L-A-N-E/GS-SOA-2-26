@@ -1,6 +1,6 @@
 # Evidências da aplicação
 
-Esta pasta reúne as provas de que a API do S.B.P. funciona: as respostas reais dos endpoints, as migrações aplicadas e a suíte de testes.
+Este documento descreve o conteúdo de `evidencias/`: as respostas reais dos endpoints, as migrações aplicadas e a suíte de testes.
 
 ## Como gerar as evidências
 
@@ -24,15 +24,17 @@ Se o start falhar no Windows com `Unable to establish loopback connection`, troq
 bash docs/gerar-evidencias.sh
 ```
 
-O script faz as duas capturas em uma passada: um arquivo por chamada da API, cada um com o método, o caminho, a resposta JSON e o código HTTP, e três consultas direto no PostgreSQL, que são os arquivos `00-*`.
+O script grava, em uma passada: um arquivo por chamada da API, cada um com o método, o caminho, a resposta JSON e o código HTTP; e três consultas feitas direto no PostgreSQL, que são os arquivos `00-migracoes-flyway.txt`, `00-dados-carregados.txt` e `00-classificacao-ml.txt`.
 
-> Rode o script de novo depois de **qualquer migração nova**: as evidências do banco mostram o estado dele no momento da captura, e é assim que elas deixam de bater com as migrações.
+> Execute o script novamente depois de **qualquer migração nova**. As evidências do banco refletem o estado dele no momento da captura, e é por aí que deixam de corresponder às migrações.
 
 **4. Rode os testes**
 
 ```bash
 ./mvnw test
 ```
+
+A saída da suíte é o arquivo `00-testes.txt`.
 
 ## O que cada evidência mostra
 
@@ -61,7 +63,7 @@ O script faz as duas capturas em uma passada: um arquivo por chamada da API, cad
 
 ## Capturas de tela
 
-Cinco capturas complementam os arquivos gerados pelo script, mostrando a aplicação em funcionamento:
+Cinco capturas complementam os arquivos gerados pelo script:
 
 | Arquivo | O que mostra |
 | --- | --- |
@@ -71,7 +73,7 @@ Cinco capturas complementam os arquivos gerados pelo script, mostrando a aplica�
 | `testes-verdes.png` | A saída de `./mvnw test`, com os 60 testes |
 | `banco-populado.png` | Uma consulta no banco com as linhas, paradas, itinerários e totens reais carregados |
 
-As três consultas abaixo são as mesmas que o script executa; estão aqui para quem quiser rodá-las à mão.
+As três consultas abaixo são as mesmas que o script executa, reproduzidas aqui para execução manual.
 
 ### Contagem dos dados carregados
 

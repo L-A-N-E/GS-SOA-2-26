@@ -21,7 +21,7 @@ public interface LinhaRepository extends JpaRepository<Linha, Long> {
 
     Page<Linha> findByAreaOperacao(AreaOperacao areaOperacao, Pageable paginacao);
 
-    /** Busca unificada do aplicativo: aceita o numero da linha ou parte do nome. */
+    /** Busca unificada do aplicativo: aceita o número da linha ou parte do nome. */
     @Query("""
             SELECT l FROM Linha l
             WHERE UPPER(l.codigo) LIKE UPPER(CONCAT('%', :termo, '%'))

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # =====================================================================
 # S.B.P. - Smart Bus Point
-# Captura as evidencias de funcionamento da API em docs/evidencias/
+# Captura as evidências de funcionamento da API em docs/evidencias/
 #
-# Pre-requisitos: o banco no ar (docker compose up -d) e a aplicacao
-# rodando (./mvnw spring-boot:run). Captura tanto as respostas da API
-# quanto as consultas ao banco, em uma passada so.
+# Pré-requisitos: o banco no ar (docker compose up -d) e a aplicação
+# rodando (./mvnw spring-boot:run). Captura, em uma passada, as
+# respostas da API e as consultas ao banco.
 #
 # Uso:  bash docs/gerar-evidencias.sh
 # =====================================================================
@@ -32,10 +32,10 @@ echo "Capturando evidencias de $BASE"
 echo
 
 # ---------------------------------------------------------------------
-# Previsoes expiram em 5 minutos por regra de negocio, entao antes de
-# capturar o painel registramos previsoes novas pela propria API. Em
-# producao quem faz isso e a integracao com a API Olho Vivo e o servico
-# que aplica o modelo de previsao.
+# Previsões expiram em 5 minutos por regra de negócio; antes de capturar
+# o painel, registramos previsões novas pela própria API. Em produção esse
+# papel cabe à integração com a API Olho Vivo e ao serviço que aplica o
+# modelo de previsão.
 # ---------------------------------------------------------------------
 semear() {
     curl -s -o /dev/null -X POST "$BASE/api/previsoes" \
@@ -50,7 +50,7 @@ semear '{"linhaId":1,"paradaId":1,"minutosEstimados":7,"origem":"TEMPO_REAL","lo
 semear '{"linhaId":1,"paradaId":1,"minutosEstimados":21,"origem":"GTFS_PROGRAMADO"}'
 echo
 
-# --- saude e migracoes ---
+# --- saúde e migrações ---
 requisicao 01-saude            GET /actuator/health
 requisicao 02-migracoes        GET /actuator/flyway
 
@@ -58,10 +58,10 @@ requisicao 02-migracoes        GET /actuator/flyway
 requisicao 03-painel-totem     GET /api/totens/SBP-0003/painel
 requisicao 04-painel-por-qrcode GET /api/totens/qrcode/sbp-c3d4e5f6a1b2
 
-# --- regra de negocio: totem fora de operacao nao exibe painel (409) ---
+# --- regra de negócio: totem fora de operação não exibe painel (409) ---
 requisicao 05-totem-manutencao GET /api/totens/SBP-0004/painel
 
-# --- jornada do cidadao ---
+# --- jornada do cidadão ---
 requisicao 06-paradas-proximas GET "/api/paradas/proximas?latitude=-23.4319&longitude=-46.7871&raioKm=1&limite=5"
 requisicao 07-busca-linhas     GET "/api/linhas?termo=1177"
 requisicao 08-trajeto-da-linha GET /api/paradas/linha/1
@@ -69,14 +69,14 @@ requisicao 09-previsoes        GET /api/previsoes/parada/115
 requisicao 10-rota-de-hoje     GET /api/cidadaos/1/rota-de-hoje
 requisicao 11-pontos-interesse GET "/api/pontos-interesse/parada/115?raioKm=2&limite=5"
 
-# --- monitoramento da operacao ---
+# --- monitoramento da operação ---
 requisicao 12-totens-atencao   GET /api/totens/atencao
 
 # --- tratamento de erros ---
 requisicao 13-erro-404         GET /api/paradas/999999
 requisicao 14-erro-409-raio    GET "/api/paradas/proximas?latitude=-23.55&longitude=-46.63&raioKm=50"
 
-# --- validacao de entrada (400 com os campos invalidos) ---
+# --- validação de entrada (400 com os campos inválidos) ---
 {
     echo "### POST /api/paradas  (corpo invalido de proposito)"
     echo
@@ -87,15 +87,15 @@ requisicao 14-erro-409-raio    GET "/api/paradas/proximas?latitude=-23.55&longit
 } > "$SAIDA/15-erro-400-validacao.txt" 2>&1
 printf '%-42s -> %s\n' "POST /api/paradas (invalido)" "15-erro-400-validacao.txt"
 
-# --- especificacao OpenAPI completa ---
+# --- especificação OpenAPI completa ---
 curl -s "$BASE/v3/api-docs" -o "$SAIDA/16-openapi.json"
 printf '%-42s -> %s\n' "GET /v3/api-docs" "16-openapi.json"
 
 # ---------------------------------------------------------------------
-# Evidencias tiradas direto do banco. Ficam no mesmo script para que a
-# captura da API e a do banco nunca fiquem desencontradas: antes elas
-# eram feitas a mao, e um arquivo chegou a mostrar 4 migracoes depois
-# que a V5 e a V6 ja existiam.
+# Evidências tiradas direto do banco. Ficam no mesmo script para que a
+# captura da API e a do banco nunca fiquem dessincronizadas: feitas a
+# mão, um arquivo chegou a mostrar 4 migrações quando a V5 e a V6 já
+# existiam.
 # ---------------------------------------------------------------------
 PSQL_CONTAINER="${SBP_PG_CONTAINER:-sbp-postgres}"
 

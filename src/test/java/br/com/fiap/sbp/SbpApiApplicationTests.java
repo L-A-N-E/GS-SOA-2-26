@@ -7,8 +7,8 @@ import org.springframework.test.context.ActiveProfiles;
 
 /**
  * Garante que o contexto do Spring sobe por inteiro: entidades mapeadas,
- * repositorios, servicos e controladores. E o teste que pega erro de
- * configuracao antes que ele apareca no ambiente de verdade.
+ * repositórios, serviços e controladores. É o teste que detecta erro de
+ * configuração antes que ele apareça no ambiente real.
  */
 @SpringBootTest
 @ActiveProfiles("test")
@@ -17,6 +17,6 @@ class SbpApiApplicationTests {
     @Test
     @DisplayName("O contexto da aplicação carrega sem erros")
     void contextoCarrega() {
-        // Se chegou ate aqui, todo o grafo de beans foi construido com sucesso.
+        // Se chegou até aqui, todo o grafo de beans foi construído com sucesso.
     }
 }

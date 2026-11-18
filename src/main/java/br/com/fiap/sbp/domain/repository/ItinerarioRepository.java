@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface ItinerarioRepository extends JpaRepository<Itinerario, Long> {
 
-    /** Trajeto completo de uma linha, na ordem em que o onibus percorre as paradas. */
+    /** Trajeto completo de uma linha, na ordem em que o ônibus percorre as paradas. */
     @Query("""
             SELECT i FROM Itinerario i
             JOIN FETCH i.parada

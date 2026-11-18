@@ -22,12 +22,12 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
- * Regras de negocio dos totens.
+ * Regras de negócio dos totens.
  *
- * <p>Aqui mora o endpoint mais importante da API: o painel do totem. O totem
- * fica na calcada, muitas vezes com conexao instavel, e por isso recebe a tela
- * inteira pronta em uma unica chamada, em vez de montar a informacao com varias
- * requisicoes.</p>
+ * <p>Concentra o endpoint central da API: o painel do totem. O equipamento fica
+ * na calçada, muitas vezes com conexão instável, e por isso recebe a tela
+ * inteira pronta em uma única chamada, em vez de montar a informação com várias
+ * requisições.</p>
  */
 @Service
 public class TotemService {
@@ -37,7 +37,7 @@ public class TotemService {
     private final PrevisaoService previsaoService;
     private final PontoInteresseService pontoInteresseService;
 
-    /** Base do endereco aberto pelo QR Code impresso no totem. */
+    /** Base do endereço aberto pelo QR Code impresso no totem. */
     private final String baseUrlQrCode;
 
     public TotemService(TotemRepository totemRepository,
@@ -65,7 +65,7 @@ public class TotemService {
         return SbpMapper.paraResposta(buscarEntidadePorCodigo(codigo));
     }
 
-    /** Totens que a operacao precisa verificar: em manutencao ou sem sincronizar. */
+    /** Totens que a operação precisa verificar: em manutenção ou sem sincronizar. */
     @Transactional(readOnly = true)
     public List<TotemResponse> buscarQuePrecisamAtencao() {
         LocalDateTime limite = LocalDateTime.now()
@@ -77,10 +77,10 @@ public class TotemService {
     /**
      * Monta o painel completo exibido na tela do totem.
      *
-     * <p>Reune, de uma vez: a parada, o painel permanente com todas as linhas,
-     * o destaque do carrossel (veiculo a menos de 3 minutos), as referencias
-     * urbanas proximas, o endereco do QR Code e o texto que o botao tatil le em
-     * voz alta.</p>
+     * <p>Reúne, de uma vez: a parada, o painel permanente com todas as linhas, o
+     * destaque do carrossel (veículo a menos de 3 minutos), as referências urbanas
+     * próximas, o endereço do QR Code e o texto que o botão tátil lê em voz
+     * alta.</p>
      */
     @Transactional
     public PainelTotemResponse montarPainel(String codigoTotem) {
@@ -122,8 +122,8 @@ public class TotemService {
     }
 
     /**
-     * Abre o ponto a partir do QR Code lido pelo cidadao.
-     * E a ponte entre o totem fisico e o celular: o mesmo painel, no bolso.
+     * Abre o ponto a partir do QR Code lido pelo cidadão.
+     * É a ponte entre o totem físico e o celular: o mesmo painel, no bolso.
      */
     @Transactional
     public PainelTotemResponse montarPainelPorQrCode(String token) {
@@ -170,7 +170,7 @@ public class TotemService {
         return SbpMapper.paraResposta(totemRepository.save(totem));
     }
 
-    /** Batimento periodico enviado pelo proprio totem para avisar que esta vivo. */
+    /** Batimento periódico enviado pelo próprio totem para avisar que está em operação. */
     @Transactional
     public TotemResponse sincronizar(String codigo) {
         Totem totem = buscarEntidadePorCodigo(codigo);
@@ -190,8 +190,8 @@ public class TotemService {
     }
 
     /**
-     * Texto lido em voz alta pelo botao tatil, em conformidade com a Lei
-     * Brasileira de Inclusao. Anuncia a parada e as tres proximas chegadas.
+     * Texto lido em voz alta pelo botão tátil, em conformidade com a Lei
+     * Brasileira de Inclusão. Anuncia a parada e as três próximas chegadas.
      */
     private String montarTextoAcessivel(Parada parada, List<PrevisaoResponse> previsoes) {
         if (previsoes.isEmpty()) {

@@ -1,6 +1,6 @@
 package br.com.fiap.sbp.domain.enums;
 
-/** Situacao operacional de um totem instalado na calcada. */
+/** Situação operacional de um totem instalado na calçada. */
 public enum StatusTotem {
 
     ATIVO("Em operação normal"),
@@ -18,7 +18,7 @@ public enum StatusTotem {
         return descricao;
     }
 
-    /** Um totem so exibe informacao confiavel ao cidadao quando esta ativo. */
+    /** Um totem só exibe informação confiável ao cidadão quando está ativo. */
     public boolean operacional() {
         return this == ATIVO;
     }

@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Cidadao cadastrado no aplicativo do S.B.P.
+ * Cidadão cadastrado no aplicativo do S.B.P.
  *
- * <p>Guarda apenas o minimo necessario para personalizar a jornada e as
- * preferencias de acessibilidade. Nenhum dado sensivel e armazenado: o projeto
- * segue a orientacao da Global Solution de nao usar dados pessoais reais, e os
- * registros de exemplo sao ficticios.</p>
+ * <p>Guarda apenas o mínimo necessário para personalizar a jornada e as
+ * preferências de acessibilidade. Nenhum dado sensível é armazenado: o projeto
+ * segue a orientação da Global Solution de não usar dados pessoais reais, e os
+ * registros de exemplo são fictícios.</p>
  */
 @Entity
 @Table(name = "tb_cidadao", indexes = @Index(name = "ix_cidadao_email", columnList = "email", unique = true))
@@ -65,14 +65,14 @@ public class Cidadao {
     private List<RotinaProgramada> rotinas = new ArrayList<>();
 
     /**
-     * Indica se o cidadao usa algum recurso assistivo. O aplicativo e o totem
-     * ajustam a interface a partir dessa informacao.
+     * Indica se o cidadão usa algum recurso assistivo. O aplicativo e o totem
+     * ajustam a interface a partir dessa informação.
      */
     public boolean usaRecursoAssistivo() {
         return prefereAltoContraste || prefereLeitorTela;
     }
 
-    /** Mantem os dois lados da associacao coerentes. */
+    /** Mantém os dois lados da associação coerentes. */
     public void adicionarRotina(RotinaProgramada rotina) {
         rotinas.add(rotina);
         rotina.setCidadao(this);

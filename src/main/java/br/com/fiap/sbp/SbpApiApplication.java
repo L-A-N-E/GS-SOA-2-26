@@ -7,9 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * S.B.P. — Smart Bus Point.
  *
  * <p>Backend da CitizenTech proposta pela equipe para a Global Solution 2026.2.
- * Centraliza as informacoes consumidas pelo totem da calcada, pelo aplicativo e
- * pelo site, de forma que o cidadao tenha a mesma informacao em qualquer um dos
- * tres — inclusive quando nao tem celular, bateria ou dados moveis.</p>
+ * Centraliza as informações consumidas pelo totem da calçada, pelo aplicativo e
+ * pelo site, de modo que o cidadão tenha a mesma informação em qualquer um dos
+ * três — inclusive quando não tem celular, bateria ou dados móveis.</p>
  */
 @SpringBootApplication
 public class SbpApiApplication {

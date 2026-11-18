@@ -25,9 +25,9 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Testa as regras de negocio das paradas sem subir banco nem contexto Spring:
- * os repositorios sao simulados, de modo que o teste exercita apenas a decisao
- * que o servico toma.
+ * Testa as regras de negócio das paradas sem subir banco nem contexto Spring:
+ * os repositórios são simulados, de modo que o teste exercita apenas a decisão
+ * que o serviço toma.
  */
 @ExtendWith(MockitoExtension.class)
 class ParadaServiceTest {
